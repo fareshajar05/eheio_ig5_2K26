@@ -42,3 +42,5 @@ webpack-dev:
 
 webpack-server:
 	$(EXEC_SERVER) npm run watch
+
+	docker exec -it 9af922d2d506 bash

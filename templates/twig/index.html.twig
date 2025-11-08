@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - Hello TwigController!{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    <h1>Hello {{ name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code>/var/www/html/src/Controller/TwigController.php</code></li>
+        <li>Your template at <code>/var/www/html/templates/twig/index.html.twig</code></li>
+    </ul>
+</div>
+{% endblock %}
+ {% block stylesheets %}
+{{parent()}} 
+ <style>
+  
+          {# body { 
+            background-color:red;
+          } #}
+          </style>
+        {% endblock %}
+        {# {% block javascripts %}
+        {{parent()}} 
+          <script>
+           alert("Hello from index.html.twig"); 
+          </script>
+        {% endblock %} #}
+

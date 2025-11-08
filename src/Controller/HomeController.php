@@ -19,8 +19,8 @@ class HomeController extends AbstractController
     // public function welcome(): Response 
     // return new Response ("Hello, world!"); // }
 
-    #[Route('/home/{smia}/{age}',name: 'app_index',requirements: ['smia' => '\d+', 'age' => '\d+'])]
-    public function index(int $smia = 1, int $age = 27): Response
+    #[Route('/home/{smia}/{age}',name: 'app_index',requirements: ['smia' => '[a-zA-Z]+', 'age' => '\d+'])]
+    public function index(string $smia, int $age): Response
     {
        return new Response("Hello " . $smia . " and your age is " . $age . " !");
     }
