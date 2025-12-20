@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1>Ajouter un utilisateur</h1>
+                
+                {{ form(userForm) }}
+                  {% if app.request.method == 'POST' %}
+                    <hr>
+                    <h3>Données reçues :</h3>
+                    <p><strong>Nom :</strong> {{ userForm.vars.data.fullname }}</p>
+                    <p><strong>Date de naissance :</strong> {{ userForm.vars.data.birthDate|date('d/m/Y') }}</p>
+                    <p><strong>Occupation :</strong> {{ userForm.vars.data.occupation }}</p>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
