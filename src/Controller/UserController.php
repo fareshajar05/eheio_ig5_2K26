@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\User;
 use App\Form\UserType;
+use Doctrine\ORM\EntityManagerInterface; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,8 +19,9 @@ class UserController extends AbstractController
             'controller_name' => 'UserController',
         ]);
     }
+    
     #[Route('/user-add', name: 'app_user_add')]
-    public function addUser(Request $request): Response
+    public function addUser(Request $request, EntityManagerInterface $entityManager): Response 
     {
         $user = new User();
         $userForm = $this->createForm(UserType::class, $user);
@@ -27,7 +30,12 @@ class UserController extends AbstractController
         if ($userForm->isSubmitted() && $userForm->isValid()) {
             
             $user = $userForm->getData();
-            dump($user);
+            
+            // 2 LIGNES POUR ENREGISTRER DANS LA BASE DE DONNÉES
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+        
             
             return $this->redirectToRoute('app_user');
         }
@@ -36,5 +44,4 @@ class UserController extends AbstractController
             'userForm' => $userForm->createView(),
         ]);
     }
-
 }
